@@ -1,13 +1,13 @@
-# Lab 0: Pure Terraform (local backend)
+# Lab 0: Czysty Terraform (backend lokalny)
 
-This warm-up lab uses only the `random` provider to generate a string. No Azure resources and only the default local backend.
+To rozgrzewkowe laboratorium używa wyłącznie providera `random` do generowania ciągu znaków. Brak zasobów Azure i tylko domyślny backend lokalny.
 
-## Run
+## Uruchomienie
 ```
 cd lab0
 ./skrypt.sh -f dev.tfvars
 ```
 
-## Notes
-- No backend block is defined, so Terraform uses the local backend (state file: `terraform.tfstate` in the folder).
-- Tweak `variables.tf` to change length or character sets; use `prefix` to prepend a value.
+## Uwagi
+- Brak zdefiniowanego bloku backend, więc Terraform używa backendu lokalnego (plik stanu: `terraform.tfstate` w tym folderze).
+- Zmień `variables.tf`, aby dostosować długość lub zestaw znaków; użyj `prefix`, aby dodać prefiks do wartości.

@@ -22,3 +22,8 @@ output "storage_account_primary_web_endpoint" {
   description = "Główny punkt końcowy web dla konta magazynu (jeśli włączone static websites)."
   value       = azurerm_storage_account.sa.primary_web_endpoint
 }
+
+output "storage_container_name" {
+  description = "Nazwa utworzonego kontenera w Storage Account."
+  value       = azurerm_storage_container.naszstate.name
+}
