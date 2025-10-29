@@ -1,0 +1,6 @@
+# Fill with your remote backend settings and run:
+# terraform init -backend-config=backend.hcl
+resource_group_name  = "rg-tfstate"
+storage_account_name = "sttfstate123"
+container_name       = "tfstate"
+key                  = "lab13.tfstate"

@@ -1,0 +1,4 @@
+resource_group_name  = "lab14demo-dev-rg"
+storage_account_name = "<your_storage_account>"
+container_name       = "tfstate"
+key                  = "lab14.terraform.tfstate"

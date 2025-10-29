@@ -1,0 +1,26 @@
+#cloud-config
+package_update: true
+packages:
+  - blobfuse2
+  - fuse
+write_files:
+  - path: /etc/blobfuse2/config.yaml
+    permissions: '0644'
+    owner: root:root
+    content: |
+      version: 2
+      logging:
+        level: LOG_WARNING
+      components:
+        - libfuse
+        - attr
+        - azstorage
+      azstorage:
+        account-name: ${sa_name}
+        container: ${container}
+        sas: ${sas}
+      libfuse:
+        mount-options: allow_other,default_permissions
+runcmd:
+  - [ bash, -c, "mkdir -p ${mount_dir}" ]
+  - [ bash, -c, "blobfuse2 -c /etc/blobfuse2/config.yaml ${mount_dir}" ]

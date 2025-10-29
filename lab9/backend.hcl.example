@@ -1,0 +1,7 @@
+# Example backend config for lab9
+# Usage: terraform init -backend-config=backend.hcl
+
+resource_group_name  = "rg-tfstate"
+storage_account_name = "satfstate1234"
+container_name       = "tfstate"
+key                  = "lab9/terraform.tfstate"
