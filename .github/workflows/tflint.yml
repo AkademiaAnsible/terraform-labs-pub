@@ -1,0 +1,36 @@
+name: tflint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  tflint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v6
+        with:
+          tflint_version: v0.52.0
+          cache: true
+
+      - name: Initialize TFLint plugins
+        run: tflint --init
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Run TFLint (compact)
+        run: |
+          # Run TFLint in each lab directory to respect per-dir modules
+          set -euo pipefail
+          status=0
+          #for d in lab*/; do
+          for d in lab0 lab1; do
+            echo "Running tflint in $d"
+            (cd "$d" && tflint -f compact --module || status=$?)
+          done
+          exit $status
