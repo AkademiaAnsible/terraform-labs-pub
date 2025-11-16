@@ -1,0 +1,39 @@
+# Przykładowy plik terragrunt.hcl dla zarządzania środowiskami
+
+# Backend configuration
+remote_state {
+  backend = "azurerm"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
+  config = {
+    resource_group_name  = "tfstate-rg"
+    storage_account_name = "tfstatestorage123"
+    container_name       = "tfstate"
+    key                  = "${path_relative_to_include()}/terraform.tfstate"
+  }
+}
+
+# Generate provider block
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider "azurerm" {
+  features {}
+}
+EOF
+}
+
+# Input values
+inputs = {
+  resource_group_name = "adv11-${get_env("ENVIRONMENT", "dev")}-rg"
+  location            = "westeurope"
+  tags = {
+    Owner       = "terraform"
+    Lab         = "advanced11"
+    Environment = get_env("ENVIRONMENT", "dev")
+    ManagedBy   = "terragrunt"
+  }
+}

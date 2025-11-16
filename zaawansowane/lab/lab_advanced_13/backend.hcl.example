@@ -1,0 +1,7 @@
+# Przykładowa konfiguracja backendu (skopiuj i dostosuj)
+# terraform init -backend-config=backend.hcl
+
+storage_account_name = "twoja_storage_state"
+container_name       = "tfstate"
+key                  = "lab_advanced_13.tfstate"
+resource_group_name  = "twoja-rg-state"

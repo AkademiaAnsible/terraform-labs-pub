@@ -1,0 +1,45 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "Initialize_variable": {
+        "inputs": {
+          "variables": [
+            {
+              "name": "message",
+              "type": "string",
+              "value": "Hello from Logic App with Private VNet Integration!"
+            }
+          ]
+        },
+        "runAfter": {},
+        "type": "InitializeVariable"
+      },
+      "Response": {
+        "inputs": {
+          "body": "@variables('message')",
+          "statusCode": 200
+        },
+        "kind": "Http",
+        "runAfter": {
+          "Initialize_variable": [
+            "Succeeded"
+          ]
+        },
+        "type": "Response"
+      }
+    },
+    "contentVersion": "1.0.0.0",
+    "outputs": {},
+    "triggers": {
+      "manual": {
+        "inputs": {
+          "schema": {}
+        },
+        "kind": "Http",
+        "type": "Request"
+      }
+    }
+  },
+  "kind": "Stateful"
+}

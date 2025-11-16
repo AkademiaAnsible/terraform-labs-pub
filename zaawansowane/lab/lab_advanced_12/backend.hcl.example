@@ -1,0 +1,4 @@
+resource_group_name  = "adv12-demo-rg"
+storage_account_name = "<your_storage_account>"
+container_name       = "tfstate"
+key                  = "lab_advanced_12.terraform.tfstate"
